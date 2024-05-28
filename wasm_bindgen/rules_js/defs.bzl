@@ -15,7 +15,7 @@ def _js_rust_wasm_bindgen_impl(ctx):
     )
 
     # Return a structure that is compatible with the deps[] of a ts_library.
-    declarations = info.ts
+    types = info.ts
     es5_sources = info.js
 
     return [
@@ -24,9 +24,10 @@ def _js_rust_wasm_bindgen_impl(ctx):
         ),
         info,
         js_info(
-            declarations = declarations,
+            target = ctx.label,
+            types = types,
             sources = es5_sources,
-            transitive_declarations = declarations,
+            transitive_types = types,
             transitive_sources = es5_sources,
         ),
     ]
